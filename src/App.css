@@ -1,0 +1,214 @@
+:root {
+    --primary-text-light: #212121;
+    --background-light: #f5f5f5;
+    --primary-text-dark: #ffffff;
+    --background-dark: #191a20;
+    --secondary-text-light: #757575;
+    --secondary-text-dark: #b2b2b2;
+    --card-bg-light: #ffffff;
+    --card-bg-dark: #252525;
+    --button-bg-light: #e0e0e0;
+    --button-bg-dark: #333333;
+    --button-text-light: #000000;
+    --button-text-dark: #ffffff;
+    --glitch-color-light: #ff00c1;
+    --glitch-color-dark: #00fff9;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-light);
+    color: var(--primary-text-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  [data-theme="dark"] body {
+    background-color: var(--background-dark);
+    color: var(--primary-text-dark);
+  }
+  
+  /* Header */
+  header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .header-title h1 {
+    font-size: 12rem;
+    text-align: center;
+  }
+  
+  /* Theme Toggle */
+  .theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+  
+  /* Grid Container */
+  .grid-container {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .grid-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 250px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg-light);
+  }
+  
+  [data-theme="dark"] .grid-item {
+    background-color: var(--card-bg-dark);
+    color: var(--primary-text-dark);
+  }
+  
+  [data-theme="dark"] .filter-buttons button {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+  }
+  
+  [data-theme="light"] .grid-item {
+    background-color: var(--card-bg-light);
+    color: var(--primary-text-light);
+  }
+  
+  [data-theme="light"] .filter-buttons button {
+    background-color: var(--button-bg-light);
+    color: var(--button-text-light);
+  }
+  
+  /* Hover and animations */
+  .grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .grid-item video,
+  .grid-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .grid-item .project-title {
+    position: relative;
+    z-index: 2;
+    font-size: 1.5rem;
+    text-align: center;
+    color: white;
+  }
+  
+  /* Glitch Styles */
+  .glitch {
+    position: relative;
+    color: white;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+  }
+  
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--glitch-color-light);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+  
+  .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--glitch-color-dark), 2px 2px var(--glitch-color-light);
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+  }
+  
+  @keyframes glitch-anim {
+    0% {
+      clip: rect(0, 9999px, 0, 0);
+    }
+    10% {
+      clip: rect(20px, 9999px, 50px, 0);
+    }
+    20% {
+      clip: rect(10px, 9999px, 40px, 0);
+    }
+    30% {
+      clip: rect(30px, 9999px, 60px, 0);
+    }
+    100% {
+      clip: rect(0, 9999px, 100px, 0);
+    }
+  }
+  
+  @keyframes glitch-anim2 {
+    0% {
+      clip: rect(20px, 9999px, 40px, 0);
+    }
+    20% {
+      clip: rect(10px, 9999px, 50px, 0);
+    }
+    40% {
+      clip: rect(30px, 9999px, 60px, 0);
+    }
+    100% {
+      clip: rect(40px, 9999px, 100px, 0);
+    }
+  }
+  
+  @keyframes glitch-skew {
+    0% {
+      transform: skew(5deg);
+    }
+    100% {
+      transform: skew(-5deg);
+    }
+  }
+  
+  /* Filter Buttons */
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .filter-buttons button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: var(--button-bg-light);
+    color: var(--button-text-light);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .filter-buttons button:hover {
+    background-color: var(--button-bg-dark);
+  }
+  

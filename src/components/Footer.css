@@ -1,0 +1,17 @@
+/* Estilos para el footer */
+.footer-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-size: 1rem;
+}
+
+.footer-container ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.footer-container li {
+  font-weight: normal;
+}
